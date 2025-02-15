@@ -88,7 +88,7 @@ Social Media Apps like instagram, facebook , snapchat are best in the industry a
 
 ## Easy Installation:-
 
-- vscode: git clone https://github.com/Lisanle1/Social-Media-App.git
+- vscode: git clone https://github.com/kanak6040/social-media-app.git
 
 > cd client
 > > npm install && npm start
@@ -117,4 +117,7 @@ password: lisan123
 
 - User2 email: vishnu@gmail.com  
 password: vishnu123
+
+- User3 email: kanak@gmail.com
+password: kanak123
 </details>
