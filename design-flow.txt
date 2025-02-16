@@ -1,0 +1,97 @@
+📌 Data Flow for Social Media App
+This social media app follows the MERN stack (MongoDB, Express.js, React, Node.js) with authentication, posts, likes, comments, and user interactions. Below is a breakdown of how data moves across different parts of the system.
+
+1️⃣ User Authentication Flow (Signup/Login)
+📌 Steps:
+User Action: The user enters credentials and submits the login/signup form.
+API Call: The frontend sends a POST /api/auth/login or POST /api/auth/register request to the backend.
+Validation & Processing:
+The backend verifies the credentials.
+If valid, it generates a JWT token for authentication.
+The token is returned and stored in localStorage or Redux store.
+Subsequent Requests:
+The token is attached to API requests (Authorization: Bearer <token>).
+The backend verifies the token in middleware before processing the request.
+
+2️⃣ Creating a New Post
+📌 Steps:
+User Action: The user creates a new post and clicks "Post".
+API Call: The frontend sends a POST /api/posts request with post data.
+Backend Processing:
+The backend verifies authentication.
+The post is stored in MongoDB (posts collection).
+Response to Frontend:
+The backend returns the created post.
+The frontend updates the UI with the new post.
+
+3️⃣ Fetching & Displaying Posts (News Feed)
+📌 Steps:
+User Action: The user visits the homepage (news feed).
+API Call: The frontend fetches posts using GET /api/posts.
+Database Query:
+The backend fetches posts from MongoDB.
+It applies filters (friends' posts, latest first, etc.).
+Response to Frontend:
+The backend sends the posts.
+The frontend renders them dynamically.
+
+4️⃣ Liking a Post
+📌 Steps:
+User Action: The user clicks the "Like" button on a post.
+API Call: The frontend sends a PUT /api/posts/:postId/like request.
+Backend Processing:
+The backend verifies authentication.
+The post's likes field is updated in MongoDB.
+Response to Frontend:
+The backend returns the updated post.
+The frontend updates the UI with the new like count.
+
+5️⃣ Commenting on a Post
+📌 Steps:
+User Action: The user adds a comment.
+API Call: The frontend sends a POST /api/posts/:postId/comment request.
+Backend Processing:
+The backend verifies authentication.
+The comment is added to the comments array of the post.
+Response to Frontend:
+The backend returns the updated post.
+The frontend displays the new comment.
+
+6️⃣ Following a User
+📌 Steps:
+User Action: The user clicks "Follow" on another user’s profile.
+API Call: The frontend sends a PUT /api/users/:userId/follow request.
+Backend Processing:
+The backend updates both users' follow lists in MongoDB.
+Response to Frontend:
+The backend confirms the update.
+The frontend updates the UI with the follow status.
+
+7️⃣ Messaging (Direct Chat)
+📌 Steps:
+User Action: The user sends a message in chat.
+API Call: The frontend sends a POST /api/messages request.
+Backend Processing:
+The backend stores the message in MongoDB.
+Response to Frontend:
+The backend returns the message.
+The frontend updates the chat window in real-time.
+WebSockets for Real-Time Updates:
+Messages are pushed instantly via WebSockets instead of polling.
+
+8️⃣ Notifications (New Likes, Comments, Follows, Messages)
+📌 Steps:
+Event Trigger:
+A user likes, comments, follows, or sends a message.
+Database Update:
+The backend updates the notifications collection.
+Real-Time Update:
+The frontend listens for WebSocket updates and shows a notification badge.
+
+🔄 Summary: Data Flow Overview
+User initiates an action (login, post, like, comment, message).
+Frontend sends API requests to the backend.
+Backend processes the request (validates, updates MongoDB).
+Backend returns a response with updated data.
+Frontend updates the UI dynamically.
+Real-time updates (WebSockets for messages & notifications).
